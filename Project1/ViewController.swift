@@ -30,6 +30,8 @@ class ViewController: UITableViewController {
             }
         }
         
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(recommendTapped))
+        print(pictures)
     }
     
     
@@ -56,6 +58,14 @@ class ViewController: UITableViewController {
             vc.selectedImage = sortedPictures[indexPath.row]
             navigationController?.pushViewController(vc, animated: true)
         }
+    }
+  
+    @objc func recommendTapped() {
+        
+        let vc = UIAlertController(title: "Great app, must download", message: "download from here: https://www.hackingwithswift.com/100/20" , preferredStyle: .alert)
+        // mandatory on ipad to show where the sharing comes from
+        vc.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
+        present(vc, animated: true)
     }
 }
 
